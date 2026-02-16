@@ -1,0 +1,56 @@
+/*
+IoT Based Environment Monitoring System
+Software Implementation (Without Hardware)
+Microcontroller: ESP32
+Sensor: DHT22 (Simulated)
+Cloud Platform: ThingSpeak (Logic Demonstration)
+*/
+
+#include <Arduino.h>   // IMPORTANT: This line was missing
+
+// Simulated sensor values
+float temperature = 29.2;
+float humidity = 63.8;
+
+// Dummy WiFi credentials (for demonstration)
+const char* ssid = "Demo_WiFi";
+const char* password = "12345678";
+
+void setup() {
+  Serial.begin(9600);
+
+  Serial.println("=================================");
+  Serial.println(" IoT Environment Monitoring System");
+  Serial.println("=================================");
+
+  Serial.print("Connecting to WiFi");
+  delay(2000);
+  Serial.println(" ... Connected");
+
+  Serial.println("ESP32 Initialized Successfully");
+}
+
+void loop() {
+
+  temperature = temperature + 0.5;
+  humidity = humidity + 1.0;
+
+  if (humidity > 80) humidity = 60;
+  if (temperature > 35) temperature = 28;
+
+  Serial.println("\n--- Sensor Readings ---");
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  Serial.println("Sending data to Cloud Platform...");
+  Serial.println("Data uploaded successfully");
+
+  delay(5000);
+}
+
